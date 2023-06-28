@@ -1,6 +1,8 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const moment = require('moment')
+const bodyParser = require('body-parser')
+
 const app = express()
 const port = 3000
 
@@ -11,9 +13,9 @@ require('./config/mongoose')
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  
   Record.find()
     .lean()
     .then(records => {
@@ -22,6 +24,18 @@ app.get('/', (req, res) => {
       }
       res.render('index', { records })
     })
+    .catch(err => console.log(err))
+})
+
+app.get('/expenses/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/expenses', (req, res) => {
+  const { name, date, amount, category } = req.body
+  console.log(req.body)
+  return Record.create({ name, date, amount})
+    .then(() => res.redirect('/'))
     .catch(err => console.log(err))
 })
 

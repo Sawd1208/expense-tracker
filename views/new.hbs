@@ -1,0 +1,40 @@
+<div class="createSession mx-auto">
+  <p class="fs-2 text-center">請輸入你的支出</p>
+  <form action="/expenses" method="post" class="mx-auto" style="max-width: 800px;">
+    <div class="form-group row mb-3">
+        <label for="name" class="col-sm-2 col-form-label fs-5">名稱:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="名稱" name="name">
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="date" class="col-sm-2 col-form-label fs-5">日期:</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" id="date" placeholder="日期" name="date">
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="category" class="col-sm-2 col-form-label fs-5">類別:</label>
+      <div class="col-sm-10">
+        <select class="form-select">
+          <option selected>類別</option>
+          <option value="家居物業" name="category">家居物業</option>
+          <option value="交通出行" name="category">交通出行</option>
+          <option value="休閒娛樂" name="category">休閒娛樂</option>
+          <option value="餐飲食品" name="category">餐飲食品</option>
+          <option value="其他" name="category">其他</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row mb-3">
+      <label for="amount" class="col-sm-2 col-form-label fs-5">金額:</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="amount" placeholder="金額" name="amount">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary mt-3">新增支出</button>
+    </div>
+  </form>
+</div>
+
