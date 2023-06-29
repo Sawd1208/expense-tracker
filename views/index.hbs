@@ -15,9 +15,9 @@
       </div>
       <span class="text-primary fs-4 me-2 m-auto">{{ this.amount }}元</span>
       <div class="col-auto my-auto">
-        <a class="btn btn-success" href="/records/{{this._id}}/edit">edit</a>
-        <form action="" method="POST" style="display: inline;">
-          <button class="btn btn-danger" type="submit">delete</button>
+        <a class="btn btn-success" href="/records/{{this._id}}/edit">修改</a>
+        <form action="/records/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn btn-danger" type="submit">刪除</button>
         </form>
       </div>
     </li>
