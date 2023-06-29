@@ -21,6 +21,7 @@ app.use(methodOverride('_method'))
 app.get('/', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: 'asc' })
     .then(record => {
       for (let i = 0; i < record.length; i++) {
         record[i].date = moment(record[i].date).format('YYYY-MM-DD')
