@@ -1,6 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const moment = require('moment')
+
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
@@ -8,7 +8,6 @@ const app = express()
 const port = 3000
 
 const routes = require('./routes')
-const Record = require('./models/record')
 
 require('./config/mongoose')
 
