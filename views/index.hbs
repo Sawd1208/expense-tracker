@@ -7,7 +7,7 @@
 </ul> --}}
 
 <ol class="list-group">
-  {{#each records}}
+  {{#each record}}
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="ms-2 me-auto fs-4">
         <div class="fw-bold ">{{ this.name }}</div>
@@ -15,7 +15,7 @@
       </div>
       <span class="text-primary fs-4 me-2 m-auto">{{ this.amount }}元</span>
       <div class="col-auto my-auto">
-        <a class="btn btn-success" href="">edit</a>
+        <a class="btn btn-success" href="/records/{{this._id}}/edit">edit</a>
         <form action="" method="POST" style="display: inline;">
           <button class="btn btn-danger" type="submit">delete</button>
         </form>
@@ -24,7 +24,7 @@
   {{/each}}
 </ol>
 <div class="text-center">
-  <a href="/expenses/new" class="btn btn-primary mt-2">增加支出</a>
+  <a href="/records/new" class="btn btn-primary mt-2">增加支出</a>
 </div>
 
 

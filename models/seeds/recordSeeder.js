@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -7,14 +7,16 @@ if (process.env.NODE_ENV !== 'production') {
 
 mongoose.connect(process.env.MONGODB_URI)
 
-const seed_Record = require('../record')
-const seed_User = require('../user')
-const seed_Category = require('../category')
-const categoryList = require('./categoryList.json')
-const recordList = require('./recordList.json')
-const userList = require('./userList.json')
-
 const db = mongoose.connection
+
+const seed_Record = require('../record')
+// const seed_User = require('../user')
+// const seed_Category = require('../category')
+// const categoryList = require('./categoryList.json')
+const recordList = require('./recordList.json')
+// const userList = require('./userList.json')
+
+
 
 db.once('open', () => {
   console.log('mongodb connected!')
@@ -23,9 +25,8 @@ db.once('open', () => {
       name: recordList.name,
       date: recordList.date,
       amount: recordList.amount
-      // category: recordList.category
     })
   })
-  console.log('done')
+  console.log('recordSeeder done')
 })
 
