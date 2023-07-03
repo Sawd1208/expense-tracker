@@ -5,7 +5,8 @@ const moment = require('moment')
 const Record = require('../../models/record')
 
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .lean()
     .sort({ date: 'asc' })
     .then(record => {

@@ -6,12 +6,12 @@ const recordSchema = new Schema({
   name: { type: String, require: true },
   date: { type: Date, require: true },
   amount: { type: Number, require: true },
-  // userId: { 
-  //   type: Schema.Types.objectId,
-  //   ref: 'User',
-  //   index: true,
-  //   require: true,
-  //  },
+  userId: { 
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    require: true,
+   },
   // categoryId: {
   //   type: Schema.Types.objectId,
   //   ref: 'Category',

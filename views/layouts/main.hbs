@@ -11,8 +11,14 @@
 <body class="bg-light">
   <header>
     <nav class="navbar navbar-dark bg-primary justify-content-between"  style="padding: 8px 16px;">
-      <a class="navbar-brand" href="/">TotalAmount</a>
+      <a class="navbar-brand" href="/">
+      {{#if isAuthenticated}}{{ user.name }}的{{/if}}記帳本
+      </a>
+      {{#if isAuthenticated}}
       <a class="btn btn-outline-light" href="/users/logout">登出</a>
+      {{else}}
+      <a class="btn btn-outline-light" href="/users/login">登入</a>
+      {{/if}}
     </nav>
   </header>
   <main>
