@@ -1,14 +1,24 @@
-{{!-- <ul>
-  {{#each records}}
-    <li>
-      {{ this.name }}
-    </li>
-  {{/each}}  
-</ul> --}}
+<div class="input-group mb-3">
+  <form action="/search" mtheod="get" class="searchForm d-flex mx-auto" style="width: 50%;">
+    <label class="input-group-text" for="inputGroupSelect01">類別</label>
+    <select class="form-select" id="category" name="category" onchange="submit()">
+      <option value="#">全部</option>
+      {{#each categories}}
+      <option value="{{ this._id }}" {{#if this.selected}}selected{{/if}}>{{ this.name }}</option>
+      {{/each}}
+    </select>
+  </form>
+</div>
 
+<div class="d-flex justify-content-center align-items-center">
+  <h4>總金額：</h4><h1>{{totalAmount}}</h1>
+</div>
 <ol class="list-group">
   {{#each record}}
     <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="m-3" style="color: tomato; width: 30px;">
+        <i class="{{this.categoryId.icon}} fa-2xl"></i>
+      </div>  
       <div class="ms-2 me-auto fs-4">
         <div class="fw-bold ">{{ this.name }}</div>
         {{ this.date }}

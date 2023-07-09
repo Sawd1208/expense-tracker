@@ -1,31 +1,76 @@
-// const mongoose = require('mongoose')
-// const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').config()
-// }
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
-// mongoose.connect(process.env.MONGODB_URI)
-
-const seed_Record = require('../record')
-const recordList = require('./recordList.json')
-// const seed_User = require('../user')
-// const userList = require('./userList.json')
-// const seed_Category = require('../category')
-// const categoryList = require('./categoryList.json')
-
+const Record = require('../record')
+const seed_Record = require('../seedData/recordList.json')
+const User = require('../user')
+const seed_User = require('../seedData/userList.json')
+const Category = require('../category')
 
 const db = require('../../config/mongoose')
 
+
 db.once('open', () => {
-  console.log('mongodb connected!')
-  recordList.map((recordList) => {
-    seed_Record.create({
-      name: recordList.name,
-      date: recordList.date,
-      amount: recordList.amount
+  // Promise.all(seed_User.map((seedUser) => 
+  //   bcrypt
+  //     .genSalt(10)
+  //     .then(salt => bcrypt.hash(seedUser.password, salt))
+  //     .then(hash => User.create({
+  //       name: seedUser.name,
+  //       email: seedUser.email,
+  //       password: hash
+  //     }))
+  //     .then(user => {
+  //       const userId = user._id
+  //       const record = seedUser.item.map(index => {
+  //         seed_Record[index].userId = userId
+  //         return seed_Record[index]
+  //       })
+  //       return Record.create(record)
+  //     })
+  //   ))
+  // .then(() => {
+  //   console.log('done')
+  //   process.exit()
+  // })
+  Promise.all(
+    seed_User.map((seedUser, index) => {
+      return bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(seedUser.password, salt))
+        .then(hash => User.create({
+          name: seedUser.name,
+          email: seedUser.email,
+          password: hash
+        }))
+        .then(user => {
+          console.log('seedUser created!')
+          const userRecord = []
+          const userId = user._id
+          const record = seedUser.item.map(index => {
+          seed_Record[index].userId = userId
+          return seed_Record[index]
+          })
+          return Promise.all(
+            record.map(record => {
+              return Category.findOne({ name: record.category })
+                .lean()
+                .then((category) => {
+                  record.categoryId = category._id
+                  userRecord.push(record)  
+                })
+            })
+          ).then(() => {
+            return Record.create(userRecord)
+          })
+        })
     })
-  })
-  console.log('recordSeeder done')
+  ).then(() => {
+    console.log('done')
+    process.exit()
+  }).catch(err => console.log(err))
 })
 
