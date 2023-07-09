@@ -1,8 +1,8 @@
 <div class="input-group mb-3">
-  <form action="/search" mtheod="get" class="searchForm d-flex mx-auto" style="width: 50%;">
-    <label class="input-group-text" for="inputGroupSelect01">類別</label>
+  <form action="/search" method="get" class="searchForm d-flex mx-auto" style="width: 50%;">
+    <label class="input-group-text" for="category">類別</label>
     <select class="form-select" id="category" name="category" onchange="submit()">
-      <option value="#">全部</option>
+      <option value="">全部</option>
       {{#each categories}}
       <option value="{{ this._id }}" {{#if this.selected}}selected{{/if}}>{{ this.name }}</option>
       {{/each}}
