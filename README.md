@@ -39,13 +39,16 @@ npm run dev
 Express is listening on http://localhost:3000
 ```
 ## 使用
-試用帳號Ａ
+1. 試用帳號Ａ
+```
 帳號: user1@example.com
 密碼: 123
-試用帳號Ｂ
+```
+2. 試用帳號Ｂ
+```
 帳號: user2@example.com
 密碼: 123
-
+```
 ## 開發工具
 - node.js 18.15.0
 - express 4.18.2
