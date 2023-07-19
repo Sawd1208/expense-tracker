@@ -12,30 +12,7 @@ const Category = require('../category')
 
 const db = require('../../config/mongoose')
 
-
 db.once('open', () => {
-  // Promise.all(seed_User.map((seedUser) => 
-  //   bcrypt
-  //     .genSalt(10)
-  //     .then(salt => bcrypt.hash(seedUser.password, salt))
-  //     .then(hash => User.create({
-  //       name: seedUser.name,
-  //       email: seedUser.email,
-  //       password: hash
-  //     }))
-  //     .then(user => {
-  //       const userId = user._id
-  //       const record = seedUser.item.map(index => {
-  //         seed_Record[index].userId = userId
-  //         return seed_Record[index]
-  //       })
-  //       return Record.create(record)
-  //     })
-  //   ))
-  // .then(() => {
-  //   console.log('done')
-  //   process.exit()
-  // })
   Promise.all(
     seed_User.map((seedUser, index) => {
       return bcrypt
